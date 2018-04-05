@@ -10,7 +10,15 @@ function request_header(){
 	}
 	return header
 }
-
+function Signout(){
+    deleteCookie("access-token")
+    deleteCookie("uid")
+    deleteCookie("client")
+    window.location.href = "/members/sign_in"
+}
+function deleteCookie(name) {
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};
 function getCookie(name){
     var pattern = RegExp(name + "=.[^;]*")
     matched = document.cookie.match(pattern)

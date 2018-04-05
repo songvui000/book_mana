@@ -1,4 +1,5 @@
 class Api::V1::RegistrationsController < DeviseTokenAuth::RegistrationsController
+	skip_before_action :redirect_to_sign_in!
 
 	def create
 		super do 

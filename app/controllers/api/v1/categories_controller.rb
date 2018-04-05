@@ -1,5 +1,4 @@
 class Api::V1::CategoriesController < ApiBaseController
-	before_action :authenticate_v1_member!
 	before_action :set_category,except:[:index,:create,:show]
 	before_action :set_category_include,only:[:show]
 	def index

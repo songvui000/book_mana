@@ -1,11 +1,9 @@
 class Api::V1::MembersController < ApiBaseController
-	respond_to :json,:xls
-	before_action :authenticate_v1_member!
 	before_action :set_member,except:[:index]
 
 	def index
-		# authorize! current_v1_member
-		respond_with(Member.all)
+		authorize! current_v1_member
+		render json: Member.all
 	
 	end
 

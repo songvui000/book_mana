@@ -1,5 +1,4 @@
 class Api::V1::BooksController < ApiBaseController
-	before_action :authenticate_v1_member!
 	before_action :set_book,only: [:show,:update,:destroy,:edit]
 	def index
 		books = Book.left_joins(:author_books).group(:id)

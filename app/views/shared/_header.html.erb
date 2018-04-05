@@ -21,7 +21,7 @@
           <%if current_member.admin?%>
              <%=link_to 'All user',members_path,class: "dropdown-item"%>
           <%end%>
-          <%= link_to 'Sign out',destroy_v1_member_session_path,method: :delete,class: "dropdown-item"%>
+          <%= link_to 'Sign out','#',onclick: "Signout()",class: "dropdown-item"%>
         <%else%>
           <%= link_to 'Sign in',sign_in_members_path,class: "dropdown-item"%>
           <%= link_to 'Sign up',sign_up_members_path,class: "dropdown-item"%>
