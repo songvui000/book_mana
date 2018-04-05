@@ -1,0 +1,67 @@
+.conatiner
+  .sign-up-form
+    h2 Sign up
+    = form_tag v1_member_registration_path,id: "sign_up"  
+      .field
+        label Email
+        = email_field_tag :email,"", autofocus: true,autocomplete: "email",class: "form-control"
+      .field
+        label First Name
+        = text_field_tag :first_name,"",class:"form-control"
+      .field
+        label Last Name
+        = text_field_tag :last_name,"", class: "form-control"
+      .field
+        label Password
+        - if @minimum_password_length
+          em 6 characters minimum
+        =password_field_tag :password,'',class: "form-control"
+      .field
+        =password_field_tag :password_confirmation,'', autocomplete: "off",class: "form-control"
+      .action
+        =submit_tag  "Sign up",class: "btn btn-secondary"
+    = render "members/shared/links"
+    .errors
+      ul
+
+javascript:
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(exdays*1000);
+    var expires = "expires="+ d.toUTCString();
+    console.log(expires)
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+  $("#sign_up").submit(function(e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+    $.ajax({
+           url: $("#sign_up").attr('action'),
+           type: "POST",
+           data: $("#sign_up").serialize(), // serializes the form's elements.
+           success: function(data,status,xhr)
+           {
+            access = xhr.getResponseHeader("access-token")
+            client = xhr.getResponseHeader("client")
+            uid = xhr.getResponseHeader("uid")
+            expiry = xhr.getResponseHeader("expiry")
+            setCookie("access-token",access,expiry)
+            setCookie("client",client,expiry)
+            setCookie("uid",uid,expiry)
+            if (location.search == "")
+              window.location.href = "/"
+            else
+              window.location.href = decodeURIComponent(location.search.split('=')[1])
+           },
+           error: function(data,status,xhr){
+              console.log(data)
+              errors = data.responseJSON.errors.full_messages
+            for (var i = errors.length - 1; i >= 0; i--) {
+              li = document.createElement('li')
+              $(li).text(errors[i])
+              $(".errors ul").append(li)
+            }
+           }
+           
+         });
+
+  });

@@ -1,0 +1,55 @@
+.container
+	.books
+		.row
+
+
+
+
+	.pagination
+    
+
+
+javascript:
+	// function pagination(data,xhr){
+	// 	links = xhr.getResponseHeader('link').split(',')
+	// 	for (var i = 0; i< links.length;i++) {
+	// 		links[i]
+	// 	}
+	// }
+	function show_book(data){
+		books = data.books
+		for (var i = 0; i < books.length; i++) {
+			col = document.createElement('div')
+			$(col).addClass('col-md-3')
+			book = document.createElement('div')
+			$(book).addClass('book')
+			image = document.createElement('img')
+			if (! books[i].photos.length == 0)
+				$(image).attr('src', books[i].photos[0].image_url);
+			url = document.createElement('a')
+			text = document.createElement('p')
+			$(url).attr('href',books[i].url)
+			$(text).append(books[i].name)
+			$(book).append(image)
+			$(book).append(text)
+			$(url).append(book)
+			$(col).append(url)
+			$('.row').append(col)
+		}
+	}
+	$.ajax({
+		url: "#{v1_books_path}" ,
+		type: 'GET',
+		dataType: 'JSON',
+		data: {page: "#{params[:page]}",q: "#{params[:q]}"}
+	})
+	.done(function(data,status,xhr) {
+		show_book(data)
+	})
+	.fail(function(data) {
+		console.log(data)
+	})
+	.always(function() {
+		
+	});
+		

@@ -1,0 +1,96 @@
+.container
+	.book-details
+		.row
+			.col-md-5
+				.image_box
+					.carousel.slide[data-ride="carousel" id="carousel"]
+						.carousel-inner[role="listbox"]
+						a.carousel-control-prev[href="#carousel" role="button" data-slide="prev"]
+							span.carousel-control-prev-icon[aria-hidden="true"]
+							span.sr-only Previous
+						a.carousel-control-next[href="#carousel" role="button" data-slide="next"]
+							span.carousel-control-next-icon[aria-hidden="true"]
+							span.sr-only Next
+			.col-md-7
+				.name_box
+					label Name's Book
+					span.name-book
+					br
+					label Authors
+					ul.authors-book
+					br
+					label Year
+					span.year-book
+					br
+					label Description's Book
+					span.description-book
+				a.btn.btn-primary[href="" id="edit-book"] Edit
+				- if current_member.admin?
+					button.btn.btn-primary[href="" id="delete-book" data-method="destroy"] Destroy
+
+
+
+
+javascript:
+	function show_book(data){
+		book = data.book
+		photos = book.photos
+		$('.name-book').text(book.name)
+		$('.year-book').text(book.year)
+		$('.description-book').text(book.description)
+		for (var i = book.authors.length - 1; i >= 0; i--) {
+			li = document.createElement('li')
+			url = document.createElement('a')
+			$(url).attr('href', book.authors[i].url_author);
+			$(url).text(book.authors[i].user_name)
+			$(li).append(url)
+			$('ul.authors-book').append(li)
+		}
+		for (var i = photos.length - 1; i >= 0; i--) {
+			carousel_item = document.createElement('div')
+			$(carousel_item).addClass('carousel-item')
+			details_img = document.createElement('img')
+			$(details_img).addClass('details_img')
+			$(details_img).attr('src', photos[i].image_url)
+			$(details_img).attr('alt', photos[i].image_url)
+			$(carousel_item).append(details_img)
+			$('.carousel-inner').append(carousel_item)
+		}
+		$('.carousel-item:first-child').addClass('active')
+		$('.carousel').carousel({
+			interval: 20
+		})
+
+		$('#edit-book').attr('href', book.url+'/edit');
+	}
+	$.ajax({
+		
+		url: "#{v1_book_path(params[:id])}" ,
+		type: 'GET',
+		dataType: 'JSON',
+	})
+	.done(function(data) {
+		
+		show_book(data)
+	})
+	.fail(function(data) {
+		console.log(data)
+	})
+	$('#delete-book').click(function(e){
+		e.preventDefault()
+		$.ajax({
+			url: "#{v1_book_path(params[:id])}",
+			type: 'delete',
+			dataType: 'JSON',
+		})
+		.done(function() {
+			console.log("success");
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+		
+	})

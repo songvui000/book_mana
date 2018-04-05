@@ -1,0 +1,47 @@
+= render 'form_category'
+
+javascript:
+
+	$.ajax({
+		url: "#{v1_category_path(params[:id])}",
+		type: 'GET',
+		dataType: 'JSON',
+	})
+	.done(function(data) {
+		$("#category_name").val(data.category.name)
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+	$(document).ready(function() {
+		$('#submit').click(function(e){
+			e.preventDefault();
+			var formData  = new FormData($("#new_category")[0])
+			
+			$.ajax({
+				url: "#{v1_category_path(params[:id])}",
+				type: 'patch',
+				dataType: 'JSON',
+				cache:false,
+        contentType: false,
+        processData: false,
+				data: formData
+			})
+			.done(function(data) {
+				if (data.errors)
+					alert(data.errors)
+				else
+					window.location.href = data.category.url
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+			
+		})
+	});

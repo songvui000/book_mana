@@ -1,0 +1,27 @@
+= render 'form_category'
+javascript:
+	$(document).ready(function() {
+		$('#submit').click(function(e){
+			e.preventDefault();
+			formData = new FormData($("#new_category")[0])
+			$.ajax({
+				url: $('#new_category').attr('action'),
+				type: $('#new_category').attr('method'),
+				dataType: 'JSON',
+				cache:false,
+        contentType: false,
+        processData: false,
+				data: formData,
+				success: function(data){
+					window.location.href = data.category.url
+				}
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+			
+		})
+	});

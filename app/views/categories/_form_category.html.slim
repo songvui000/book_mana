@@ -1,0 +1,11 @@
+= form_tag action_name == 'new'? v1_categories_path : v1_category_path(params[:id]),id: "new_category",method: action_name == 'new'? :post : :patch
+	.field
+		label Name
+		= text_field_tag :name,"",name: "category[name]", id: "category_name",class: "form-control"
+	.field
+		label Photo
+		br
+		= file_field_tag :photos,name: "category[photo_attributes][image]",id: "category_photo_attributes_image"
+	.action
+		= submit_tag :submit,id: "submit"
+

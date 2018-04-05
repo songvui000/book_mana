@@ -1,0 +1,57 @@
+.container
+	.sign-in-form
+		h2 Log In    
+		= form_tag id: "new_session"
+			.field
+				label Email
+				= email_field_tag :email,"",class: "form-control",autofocus: true
+			.password-field
+				label Password
+				= password_field_tag :password,"",class: "form-control"
+			.actions
+				= submit_tag "Log in",class: "btn btn-secondary",id:"sign-in" 
+
+    	= render "members/shared/links" 
+javascript:
+	var c = true;
+	function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(exdays*1000);
+    var expires = "expires="+ d.toUTCString();
+    console.log(expires)
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+  $("#sign-in").click(function(e) {
+    var url = "#{v1_member_session_path}";
+    e.preventDefault(); 
+
+    $.ajax({
+       type: "POST",
+       url: url,
+       dataType: 'JSON',
+       headers: request_header(),
+       data: {email: $("#email").val(),password:$("#password").val()},
+       success: function(data,status,xhr)
+       {
+        access = xhr.getResponseHeader("access-token")
+        client = xhr.getResponseHeader("client")
+        uid = xhr.getResponseHeader("uid")
+        expiry = xhr.getResponseHeader("expiry")
+        setCookie("access-token",access,expiry)
+        setCookie("client",client,expiry)
+        setCookie("uid",uid,expiry)
+        if (location.search == "")
+          window.location.href = "/"
+        else
+          window.location.href = decodeURIComponent(location.search.split('=')[1])
+       }
+     })
+    .fail(function(data){
+    	if (c==true){
+      	$(".password-field").append("<p>"+data.responseJSON.errors+"</p>")
+      	c = false;
+    	}
+    })
+
+	});
+  

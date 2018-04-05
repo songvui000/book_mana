@@ -1,0 +1,12 @@
+class Api::V1::RegistrationsController < DeviseTokenAuth::RegistrationsController
+
+	def create
+		super do 
+		end
+	end
+
+	private
+		def sign_up_params
+			params.permit(:first_name,:last_name,:user_name,:email,:password)
+		end
+end

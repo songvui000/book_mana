@@ -1,0 +1,60 @@
+= form_tag  v1_books_path,id: "new_book",method: :post,remote: true do
+	.field
+		= label_tag :name
+	 	= text_field_tag :name,"",name: "book[name]",class: "form-control"
+	.field
+		=label_tag :year
+ 		= number_field_tag :year,"",name: 'book[year]',class: "form-control"
+ 	.field
+ 		= label_tag :authors
+ 		= select_tag :author_ids,options_from_collection_for_select(User.all,"id","user_name"),multiple: true,prompt: "Choose a author",class: "form-control",name: "book[author_ids][]"
+ 	.field
+ 		= label_tag :description
+ 		= text_field_tag :description,"",name: "book[description]",class: "form-control"
+ 	.field
+ 		= label_tag :photos
+		= file_field_tag :photos,accept: 'image/jpeg,image/gif,image/png',multiple: true
+	.field
+ 		= label_tag :category
+		= select_tag :category_id,options_from_collection_for_select(Category.all,"id","name"),prompt: "Choose a category",name: "book[category_id]",class: "form-control"
+ 	= submit_tag :submit,id: "submit"
+
+
+
+javascript:
+	$(document).ready(function() {
+		$('#submit').click(function(e){
+			e.preventDefault();
+			var formData  = new FormData($("#new_book")[0])
+			photos = $("#photos")
+			console.log($("#new_book"))
+			for (var i = photos[0].files.length - 1; i >= 0; i--) {
+				formData.append('book[photos_attributes]['+i+'][image]',photos[0].files[i])
+			}
+
+			formData.append('book[name]',$("#name").val())
+			$.ajax({
+				url: $('#new_book').attr('action'),
+				type: 'POST',
+				dataType: 'JSON',
+				cache:false,
+        contentType: false,
+        processData: false,
+				data: formData
+			})
+			.done(function(data) {
+				if (data.errors){
+					alert(data.errors)
+				}
+				else
+					alert("success")
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+			
+		})
+	});

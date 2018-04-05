@@ -1,0 +1,48 @@
+.container
+	.categories
+		= link_to 'Create category',new_category_path,class: "btn btn-success"
+		p
+		.row
+
+javascript:
+	
+	function show_category(data){
+		categories = data.categories
+		console.log(categories)
+		for (var i = 0; i < categories.length; i++) {
+			col = document.createElement('div')
+			$(col).addClass('col-md-3')
+			category = document.createElement('div')
+			$(category).addClass('category')
+			image = document.createElement('img')
+			if (categories[i].photo != null)
+				$(image).attr('src', categories[i].photo.image_url);
+			url = document.createElement('a')
+			text = document.createElement('p')
+			$(url).attr('href',categories[i].url)
+			$(text).append(categories[i].name)
+			$(category).append(image)
+			$(category).append(text)
+			$(url).append(category)
+			$(col).append(url)
+			$('.row').append(col)
+		}
+	}
+	
+	
+
+	$.ajax({
+		url: "#{v1_categories_path}" ,
+		type: 'GET',
+		dataType: 'JSON',
+	})
+	.done(function(data) {
+		show_category(data)
+	})
+	.fail(function(data) {
+	console.log(data)
+	})
+	.always(function() {
+		
+	});
+		
