@@ -10,6 +10,7 @@ class Member < ApplicationRecord
   friendly_id :user_name, use: :slugged
 
   enum level:{admin: 1,member: 0}
+  enum gender:{male: 1,female: 2}
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password, :allow_blank => true
 

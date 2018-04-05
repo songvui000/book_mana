@@ -7,7 +7,7 @@
  		= number_field_tag :year,"",name: 'book[year]',class: "form-control"
  	.field
  		= label_tag :authors
- 		= select_tag :author_ids,options_from_collection_for_select(User.all,"id","user_name"),multiple: true,prompt: "Choose a author",class: "form-control",name: "book[author_ids][]"
+ 		= select_tag :author_ids,options_from_collection_for_select(Member.all,"id","user_name"),multiple: true,prompt: "Choose a author",class: "form-control",name: "book[author_ids][]"
  	.field
  		= label_tag :description
  		= text_field_tag :description,"",name: "book[description]",class: "form-control"

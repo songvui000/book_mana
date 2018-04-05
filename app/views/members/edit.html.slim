@@ -10,6 +10,18 @@
 		.field
 			label User Name
 			= text_field_tag :user_name,"", class: "form-control"
+		.field
+			label[for="gender"] Male
+			= radio_button_tag :gender,"male", class: "form-control"
+			label[for="gender"] Female
+			= radio_button_tag :gender,"female", class: "form-control"
+		- if current_member.admin?
+			.field
+				label[for="level"] Admin
+				= radio_button_tag :level,"admin", class: "form-control"
+				label[for="level"] Member
+				= radio_button_tag :level,"member", class: "form-control"
+		.field
 			label Password
 			- if @minimum_password_length
 			  em 6 characters minimum
@@ -33,11 +45,12 @@ javascript:
 			window.location.href = '/'
 		}
 		else{
-		member = data.member
-		$('#first_name').val(member.first_name)
-		$('#last_name').val(member.last_name)
-		$('#user_name').val(member.user_name)
-			
+			for(key in data.member){
+				if (key == 'gender' || key == 'level'){
+					$("#"+key+"_"+data.member[key]).click()
+				}
+				$("#"+key).val(data.member[key])
+			}
 		}
 	})
 	.fail(function() {
