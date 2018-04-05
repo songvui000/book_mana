@@ -23,8 +23,8 @@
           <%end%>
           <%= link_to 'Sign out',destroy_v1_member_session_path,method: :delete,class: "dropdown-item"%>
         <%else%>
-          <%= link_to 'Sign in',new_member_session_path,class: "dropdown-item"%>
-          <%= link_to 'Sign up',new_member_registration_path,class: "dropdown-item"%>
+          <%= link_to 'Sign in',sign_in_members_path,class: "dropdown-item"%>
+          <%= link_to 'Sign up',sign_up_members_path,class: "dropdown-item"%>
         <%end%>
       </div>
     </div>
