@@ -25,7 +25,7 @@ puts "Creat User"
 	member.first_name = Faker::Name.name
 	member.last_name = Faker::Name.name
 	member.user_name = "admin"
-	member.email = Faker::Name.name+"@gmail.com"
+	member.email = Faker::Name.name.remove(" ")+"@gmail.com"
 	member.password = 123456789
 	member.gender = 1
 	member.save
