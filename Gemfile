@@ -6,8 +6,11 @@ git_source(:github) do |repo_name|
 end
 
 gem 'faker'
-gem 'jquery-infinite-pages' , '~> 0.2.0'
+
 gem 'react-rails' , '~> 2.4.4'
+gem 'webpacker'
+
+
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'devise_token_auth'
 gem "omniauth"
