@@ -12,15 +12,8 @@
 //= require jquery
 //= require jquery3
 //= require rails-ujs
-//= require react
-//= require react_ujs
-//= require components
 //= require_tree .
 //= require popper
 //= require bootstrap
-//= require react
-//= require react_ujs
-//= require components
 //= require_tree ./header
 //= require cocoon
-//= require jquery.infinite-pages

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails book_management: test" uuid="1eac7390-b2e4-4544-b2a1-5e1e0a5fed50">
+      <database-info product="PostgreSQL" version="9.5.11" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.1">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <user-name>postgres</user-name>
+      <introspection-schemas>book_management_test:public</introspection-schemas>
+    </data-source>
+    <data-source name="Rails book_management: production" uuid="11a977af-3e62-4f9d-a222-e06a05febe31">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <user-name>book_management</user-name>
+    </data-source>
+    <data-source name="Rails book_management: development" uuid="662a562b-73f9-4e74-8645-0ada3600ba2c">
+      <database-info product="PostgreSQL" version="9.5.11" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.1">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <user-name>postgres</user-name>
+      <introspection-schemas>book_management_development:public</introspection-schemas>
+    </data-source>
+  </component>
+</project>
