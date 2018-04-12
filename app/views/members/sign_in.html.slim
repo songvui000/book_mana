@@ -14,13 +14,6 @@
     	= render "members/shared/links" 
 javascript:
 	var c = true;
-	function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(exdays*1000);
-    var expires = "expires="+ d.toUTCString();
-    console.log(expires)
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-	}
   $("#sign-in").click(function(e) {
     var url = "#{v1_member_session_path}";
     e.preventDefault(); 
@@ -54,4 +47,11 @@ javascript:
     })
 
 	});
+	function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(exdays*1000);
+    var expires = "expires="+ d.toUTCString();
+    console.log(expires)
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
   
