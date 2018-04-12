@@ -6,8 +6,8 @@ class BooksController < ApplicationController
 		@book = Book.new
 	end
 	def index
-		@books = Book.all
-
+		@books = Book.includes(:photos).all
+		@books =	@books.as_json
 	end
 
 	

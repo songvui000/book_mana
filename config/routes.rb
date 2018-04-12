@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  get 'test1' ,to: 'members#test1'
   resources :books
   resources :categories
   resources :members do 

@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
 	before_action :set_member,only:[:show]
-	skip_before_action :redirect_to_sign_in!,only:[:sign_in,:sign_up]
+	skip_before_action :redirect_to_sign_in!,only:[:sign_in,:sign_up,:test1]
 
 	def index
 		if !current_member.admin?
@@ -21,6 +21,18 @@ class MembersController < ApplicationController
 	end
 
 	def sign_up
+	end
+
+	def test1
+		respond_to do |format|
+			format.html
+			format.json{
+				render json: {
+					category:Category.includes(:photo,books: :photos )
+
+				}
+			}
+		end
 	end
 
 	private
