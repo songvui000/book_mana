@@ -81,6 +81,5 @@ test:
 production:
   <<: *default
   database: book_management_production
-  username: virt 
-  password: 0932552373
-  # <%= ENV['BOOK_MANAGEMENT_DATABASE_PASSWORD'] %>
+  username: book_management
+  password: <%= ENV['BOOK_MANAGEMENT_DATABASE_PASSWORD'] %>
