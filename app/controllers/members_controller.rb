@@ -3,9 +3,7 @@ class MembersController < ApplicationController
 	skip_before_action :redirect_to_sign_in!,only:[:sign_in,:sign_up,:test1]
 
 	def index
-		if !current_member.admin?
-			redirect_to root_path	
-		end
+		redirect_to root_path	 unless current_member.admin?
 	end
 
 	# def new
@@ -33,6 +31,9 @@ class MembersController < ApplicationController
 				}
 			}
 		end
+	end
+	
+	def test2
 	end
 
 	private

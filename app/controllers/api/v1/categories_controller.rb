@@ -1,6 +1,6 @@
 class Api::V1::CategoriesController < ApiBaseController
 	before_action :set_category,except:[:index,:create,:show]
-	before_action :set_category_include,only:[:show]
+	before_action :set_category_include, only: [:show]
 	def index
 		categories = Category.includes(:photo).all
 		render json: categories
@@ -19,9 +19,9 @@ class Api::V1::CategoriesController < ApiBaseController
 		end
 	end
 
-	def show
-		render json: @category,page: params[:page],show_book: true
-	end
+  def show
+    render json: @category, page: params[:page], show_book: true
+  end
 
 
 	def edit
@@ -52,6 +52,6 @@ class Api::V1::CategoriesController < ApiBaseController
 		end
 		
 		def set_category_include
-			@category = Category.includes(books: :photos).friendly.find(params[:id])
+      @category = Category.includes(:photo, books: [:authors, :photos]).friendly.find(params[:id])
 		end
 end

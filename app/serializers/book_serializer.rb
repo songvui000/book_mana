@@ -9,11 +9,11 @@ class BookSerializer < ApplicationSerializer
   # end		
   
   def photos
-  	object.photos.as_json(methods: :image_url,only: [])
+  	object.photos
   end
 
   def authors
-  	object.authors.as_json(only:[:email,:user_name],methods: :url_author)
+  	object.authors
   end
 
   def url

@@ -1,0 +1,54 @@
+// Place all the styles related to the books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.toDo-table{
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.15);
+  margin: 0 auto;
+  width: 40%;
+  input{
+    width: 100%;
+  }
+  .toDo-item{
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    background: #edf5fb;
+    &.done-item{
+      background: #7e7979;
+      .toDo-event{
+        color: white;
+      }
+    }
+    .toDo-name{
+      margin-left: 10px;
+      justify-content: flex-start;
+      flex-grow: 1;
+      p{
+        margin: 0;
+      }
+    }
+    .toDo-event{
+      justify-content: flex-end;
+      font-size: 25px;
+      min-width: 120px;
+      color: #808080;
+      label{
+        cursor: pointer;
+        margin:0 10px;
+      }
+    }
+  }
+  .toDo-controlbar{
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;
+    justify-content: space-between;
+    .change-done{
+      cursor: pointer;
+    }
+    label{
+      padding: 0;
+      margin: 0;
+    }
+  }
+}

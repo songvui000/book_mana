@@ -1,104 +1,26 @@
 .container
 	.books
 		= link_to 'Edit',edit_category_path(params[:id]),class: "btn btn-success"
+		button.btn.btn-success[data-toggle="modal" data-target="#myModal"] click me
 		p
 		.row
-
-
-
 	nav[aria-label="Page navigation example"]
 		ul.pagination
 
+	.modal.bd-example-modal-lg.fade#myModal[tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"]
+		.modal-dialog.modal-lg.modal-dialog-centered
+			.modal-content
+				.modal-body
+					img[src='https://dailythuetruonggia.vn/wp-content/uploads/2018/03/Logo-ngang.png']
+					p fuck
+					p fuck
+					p fuck
+					p fuck
+					p fuck
+					p fuck
+					p fuck
+					p fuck
 
 javascript:
-	
-	function pagination(data){
-		page = data.paginate
-		if (page){
-			li = create_li(0,"#{category_path(params[:id])}")
-			$("ul.pagination").append(li)
-			if(page.prev_page != null){
-				li = create_li(page.prev_page,"#{category_path(params[:id])}")
-				$("ul.pagination").append(li)
-			}
-			li = create_li(page.current_page,"#{category_path(params[:id])}",{active: true})
-			$("ul.pagination").append(li)
-			if(page.next_page != null){
-				li = create_li(page.next_page,"#{category_path(params[:id])}")
-				$("ul.pagination").append(li)
-			}
-			li = create_li(page.total_page,"#{category_path(params[:id])}",{last_page: true})
-				$("ul.pagination").append(li)
-		}
-	}
-	function create_li(page,url,options={}){
-		li = document.createElement('li')
-		a = document.createElement('a')
-		$(li).addClass('page-item')
-		if (options.active == true){
-			$(li).addClass('active')
-		}
-		if (page == 0 || options.last_page == true){
-			if (page == 0){
-				$(a).attr('href', url)
-				$(a).addClass('page-link')
-				$(a).text("first")
-				$(li).append(a)
-			}
-			else{
-				$(a).attr('href', url+"?page="+page)
-				$(a).addClass('page-link')
-				$(a).text("last")
-				$(li).append(a)
-			}
-		}
-		else{
-			$(a).attr('href', url+"?page="+page)
-			$(a).addClass('page-link')
-			$(a).text(page)
-			$(li).append(a)
-		}
-		return li
-	}
-	function show_book(data){
-		books = data.category.books
-		console.log(data)
-		for (var i = 0; i < books.length; i++) {
-			col = document.createElement('div')
-			$(col).addClass('col-md-3')
-			book = document.createElement('div')
-			$(book).addClass('book')
-			image = document.createElement('img')
-			if (! books[i].photos.length == 0){
-				console.log(books[i].photos)
-				$(image).attr('src', books[i].photos[0].image_url);
-			}
-			url = document.createElement('a')
-			text = document.createElement('p')
-			$(url).attr('href',books[i].url)
-			$(text).append(books[i].name)
-			$(book).append(image)
-			$(book).append(text)
-			$(url).append(book)
-			$(col).append(url)
-			$('.row').append(col)
-		}
-		pagination(data.category)
-	
-	}
-	$.ajax({
-		url: "#{v1_category_path(params[:id])}" ,
-		type: 'GET',
-		dataType: 'JSON',
-		data: {page: location.search.split('=')[1]}
-	})
-	.done(function(data,status,xhr) {
-		show_book(data)
-	})
-	.fail(function(data) {
-		console.log(data)
-	})
-	.always(function() {
-		
-	});
+
 		

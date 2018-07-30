@@ -15,14 +15,4 @@ class Book < ApplicationRecord
 
 
   accepts_nested_attributes_for :photos
-
-
-  def as_json
-    {
-      name: self.name,
-      image_url: self.photos.first&.image_url,
-      slug: self.slug
-      
-    }
-  end
 end

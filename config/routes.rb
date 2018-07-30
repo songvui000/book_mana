@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'test1' ,to: 'members#test1'
+  get 'test2' ,to: 'members#test2'
   resources :books
   resources :categories
   resources :members do 
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
   		resources :members
   		resources :books
       resources :categories
-		  mount_devise_token_auth_for 'Member', at: 'auth',skip: [:omniauth_callbacks],controllers: {
+		  mount_devise_token_auth_for 'Member' , at: 'auth',skip: [:omniauth_callbacks],controllers: {
 		  	sessions: "api/v1/auth",registrations: "api/v1/registrations"
 		  }
   	end

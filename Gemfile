@@ -9,7 +9,7 @@ gem 'faker'
 
 gem 'react-rails' , '~> 2.4.4'
 gem 'webpacker'
-
+gem 'font-awesome-sass', '~> 5.0.6'
 
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'devise_token_auth'
@@ -21,6 +21,8 @@ gem "jquery-ui-rails",                             '~> 6.0.1'
 gem 'carrierwave', '~> 1.0'
 gem 'kaminari' ,             '~> 1.1.1'
 
+
+gem 'sidekiq'
 # nested form 
 gem "cocoon"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -43,7 +45,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password 
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -26,13 +26,13 @@ javascript:
 		$('#submit').click(function(e){
 			e.preventDefault();
 			var formData  = new FormData($("#new_book")[0])
-			photos = $("#photos")
-			console.log($("#new_book"))
-			for (var i = photos[0].files.length - 1; i >= 0; i--) {
-				formData.append('book[photos_attributes]['+i+'][image]',photos[0].files[i])
-			}
+			// photos = $("#photos")
+			// console.log($("#new_book"))
+			// for (var i = photos[0].files.length - 1; i >= 0; i--) {
+			// 	formData.append('book[photos_attributes]['+i+'][image]',photos[0].files[i])
+			// }
 
-			formData.append('book[name]',$("#name").val())
+			// formData.append('book[name]',$("#name").val())
 			$.ajax({
 				url: $('#new_book').attr('action'),
 				type: 'POST',
