@@ -2,7 +2,7 @@ class Api::V1::CategoriesController < ApiBaseController
 	before_action :set_category,except:[:index,:create,:show]
 	before_action :set_category_include, only: [:show]
 	def index
-		categories = Category.includes(:photo).all
+		categories = Category.includes(:photo, books: [:photos, :authors]).all
 		render json: categories
 	end
 

@@ -1,5 +1,5 @@
 class CategorySerializer < ApplicationSerializer
-  attributes :name, :url, :photo, :paginate
+  attributes :name, :url, :photo#, :paginate
   has_one :photo, as: :photoable
   has_many :books
 

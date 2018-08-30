@@ -46,5 +46,6 @@ Book.destroy_all
 	book.name = Faker::Book.title
 	book.description = Faker::Book.publisher
 	book.category_id = i%10  > 0 ? i%10 : 1
+	book.category = Category.all.sample
 	book.save!
 end

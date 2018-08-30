@@ -1,7 +1,7 @@
 class Api::V1::BooksController < ApiBaseController
 	before_action :set_book,only: [:show,:update,:destroy,:edit]
 	def index
-		books = Book.left_joins(:author_books).group(:id)
+		books = Book.includes(:author_books, :photos).group(:id)
 		if params[:q]
 			books = books.where("name iLIKE ?","%#{params[:q]}%")
 		end
